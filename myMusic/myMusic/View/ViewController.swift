@@ -148,47 +148,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                           trackName: "116"))
         
         //Сектор газа
-//        songs.append(Song(name: "Бомж",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "20"))
-//
-//        songs.append(Song(name: "Лирика",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "22"))
-//        songs.append(Song(name: "Ява",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "23"))
-//        songs.append(Song(name: "Демобилизация",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "24"))
-//        songs.append(Song(name: "Туман",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "25"))
-//        songs.append(Song(name: "Казачья",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "26"))
-//        songs.append(Song(name: "Частушки",
-//                          albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "27"))
-//        songs.append(Song(name: "Еду бабу выручать",
-//                         albumName: "Сектор Газа",
-//                          artistName: "Сектор Газа",
-//                          imageName: "20",
-//                          trackName: "28"))
+        songs.append(Song(name: "Бомж",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "20"))
+
+        songs.append(Song(name: "Лирика",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "22"))
+        songs.append(Song(name: "Ява",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "23"))
+        songs.append(Song(name: "Демобилизация",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "24"))
+        songs.append(Song(name: "Туман",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "25"))
+        songs.append(Song(name: "Казачья",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "26"))
+        songs.append(Song(name: "Частушки",
+                          albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "27"))
+        songs.append(Song(name: "Еду бабу выручать",
+                         albumName: "Сектор Газа",
+                          artistName: "Сектор Газа",
+                          imageName: "20",
+                          trackName: "28"))
        //Зиверт
         songs.append(Song(name: "Лайф",
                           albumName: "Зиверт",
