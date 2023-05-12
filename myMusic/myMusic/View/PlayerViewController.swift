@@ -15,7 +15,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
     public var songs:[Song] = []
     public var sliderTrack = UISlider()
     private let holder = UIView()
-    private var player = AVAudioPlayer()
+    public var player = AVAudioPlayer()
     private var timer = Timer()
     
     //элементы пользовательского интерфейса
@@ -87,39 +87,34 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
                                      selector: #selector(updateTimer),
                                      userInfo: nil,
                                      repeats: true)
-
+        
     }
     @objc private func updateTimer (){
         sliderTrack.value = Float(player.currentTime)
-       // print("Значение плеера: \(Float(player.currentTime))")
-      //  print("Значение слайдера: \(sliderTrack.value)")
+        // print("Значение плеера: \(Float(player.currentTime))")
+        //  print("Значение слайдера: \(sliderTrack.value)")
     }
     private func   configure() {
         /// настройка плеера
         let song = songs[position] // position это типа индекс или id или как в массиве можно по имени перебирать данные а можно по индексу
         //путь к файлу произведения
         let urlString = Bundle.main.path(forResource: song.trackName, ofType: "mp3")
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.main.async { [weak self] in
             do {
                 ///настройка режимов
                 try AVAudioSession.sharedInstance().setCategory(.playback)// это чтобы в фоне работало
                 try AVAudioSession.sharedInstance().setMode(.default)
                 try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
                 guard let urlString = urlString else {return}
-                self.player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
-                
-                self.player.volume = 0.5 // устанавливаем уровень звука по умолчанию
-                self.player.play()
-                player.delegate = self //делегат работает тут где создается проигрыватель в других емстах он не видит себя
-                
-                
+                self?.player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
+                self?.player.volume = 0.5 // устанавливаем уровень звука по умолчанию
+                self?.player.play()
+                self?.player.delegate = self //делегат работает тут где создается проигрыватель в других емстах он не видит себя
                 //пробуем таймер
-                createTimer()
-                
+                self?.createTimer()
             }
             catch {
                 print("Ошибка воспроизведения")
-                
             }
         }
         
@@ -273,6 +268,8 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
             }
         }
     }
+    
+    //кнопка следующая песня
     @objc func didTapPlayerNextButton (){
         if position < (songs.count - 1) {
             print(position)
@@ -296,14 +293,14 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
             }
             configure()
         }
-    }    
+    }
     
     //когда вью исчезает
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-      //if let player = player { //если пользователь закроет контроллер то проигрывание музыки остановиться
-         player.stop() // нафиг не нужен когда контроллер закрывется плеер останавливаеся сам
-      //    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //if let player = player { //если пользователь закроет контроллер то проигрывание музыки остановиться
+        player.stop() // нафиг не нужен когда контроллер закрывется плеер останавливаеся сам
+        //    }
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
