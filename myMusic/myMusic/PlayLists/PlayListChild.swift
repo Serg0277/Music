@@ -1,38 +1,17 @@
 //
-//  ViewController.swift
+//  Child.swift
 //  myMusic
 //
-//  Created by  Сергей on 27.07.2022.
+//  Created by  Сергей on 12.05.2023.
 //
 
-import UIKit
+import Foundation
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+ class PlayListChild {
     
-    public var songs = [Song]()
-    
-    let myTable : UITableView = {
-        let table = UITableView()
-        table.register(myTableViewCell.self,
-                       forCellReuseIdentifier: myTableViewCell.identifier) // регистрация ячейки она у нас  отдельным файлом
-        return table
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureSoungs() // функция объектов песен
-        myTable.frame = view.bounds
-        myTable.dataSource = self
-        myTable.delegate = self
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        view.addSubview(myTable)
-    }
-    
-    func  configureSoungs() {
+     private var songs: [Song] = []
+     static let shared = PlayListChild()
+    public func configurePlayListForChild() -> [Song] {
         songs.append(Song(name: "Черный Бумер",
                           albumName: "",
                           artistName: "Паша",
@@ -116,80 +95,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                           trackName: "19"))
         
         //Кубанский казачий хор
-        songs.append(Song(name: "Ой Дуся ой Маруся",
-                          albumName: "",
-                          artistName: "Казачий Хор",
-                          imageName: "113",
-                          trackName: "111"))
+        
         songs.append(Song(name: "Ойся",
                           albumName: "",
                           artistName: "Казачий Хор",
                           imageName: "113",
                           trackName: "113"))
-        songs.append(Song(name: "Не для меня",
-                          albumName: "",
-                          artistName: "Казачий Хор",
-                          imageName: "113",
-                          trackName: "112"))
-        songs.append(Song(name: "Казацкая лезгинка",
-                          albumName: "",
-                          artistName: "Казачий Хор",
-                          imageName: "113",
-                          trackName: "114"))
-        songs.append(Song(name: "Когда мы были на войне",
-                          albumName: "",
-                          artistName: "Казачий Хор",
-                          imageName: "113",
-                          trackName: "115"))
-        songs.append(Song(name: "Ой при лужке",
-                          albumName: "",
-                          artistName: "Казачий Хор",
-                          imageName: "113",
-                          trackName: "116"))
-        
-        //Сектор газа
-        //        songs.append(Song(name: "Бомж",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "20"))
-        //
-        //        songs.append(Song(name: "Лирика",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "22"))
-        //        songs.append(Song(name: "Ява",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "23"))
-        //        songs.append(Song(name: "Демобилизация",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "24"))
-        //        songs.append(Song(name: "Туман",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "25"))
-        //        songs.append(Song(name: "Казачья",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "26"))
-        //        songs.append(Song(name: "Частушки",
-        //                          albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "27"))
-        //        songs.append(Song(name: "Еду бабу выручать",
-        //                         albumName: "Сектор Газа",
-        //                          artistName: "Сектор Газа",
-        //                          imageName: "20",
-        //                          trackName: "28"))
-        //       //Зиверт
+        // Зиверт
         songs.append(Song(name: "Лайф",
                           albumName: "Зиверт",
                           artistName: "",
@@ -241,6 +153,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                           artistName: "",
                           imageName: "19",
                           trackName: "50"))
+        //60 Ваенга
         songs.append(Song(name: "Что мы наделали",
                           albumName: "Elena_Vaenga",
                           artistName: "",
@@ -288,69 +201,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                           artistName: "Виталий Аксенов",
                           imageName: "71",
                           trackName: "71"))
-        //80 Круг
-        songs.append(Song(name: "Напиши мне",
-                          albumName: "",
-                          artistName: "Ирина Круг",
-                          imageName: "80",
-                          trackName: "80"))
-        songs.append(Song(name: "Владимирский централ",
-                          albumName: "",
-                          artistName: "Михаил Круг",
-                          imageName: "80",
-                          trackName: "81"))
-        songs.append(Song(name: "Падал Снег",
-                          albumName: "",
-                          artistName: "Михаил Круг",
-                          imageName: "81",
-                          trackName: "82"))
-        
-        songs.append(Song(name: "Падал Снег",
-                          albumName: "",
-                          artistName: "Михаил Круг",
-                          imageName: "80",
-                          trackName: "82"))
-        songs.append(Song(name: "Приходите В Мой Дом",
-                          albumName: "",
-                          artistName: "Михаил Круг",
-                          imageName: "80",
-                          trackName: "83"))
-        songs.append(Song(name: "Тебе, Моя Последняя Любовь",
-                          albumName: "",
-                          artistName: "Михаил Круг",
-                          imageName: "81",
-                          trackName: "84"))
-        songs.append(Song(name: "Только для тебя",
-                          albumName: "",
-                          artistName: "Михаил Круг",
-                          imageName: "81",
-                          trackName: "85"))
-        //90 Высоцкий
-        songs.append(Song(name: "Дом хрустальный",
-                          albumName: "",
-                          artistName: "Владимир Высоцкий",
-                          imageName: "90",
-                          trackName: "90"))
-        songs.append(Song(name: "Здесь вам не равнина",
-                          albumName: "",
-                          artistName: "Владимир Высоцкий",
-                          imageName: "91",
-                          trackName: "91"))
-        songs.append(Song(name: "Песня О Друге",
-                          albumName: "",
-                          artistName: "Владимир Высоцкий",
-                          imageName: "92",
-                          trackName: "92"))
-        songs.append(Song(name: "Спасите наши души",
-                          albumName: "",
-                          artistName: "Владимир Высоцкий",
-                          imageName: "90",
-                          trackName: "93"))
-        songs.append(Song(name: "Утренняя Гимнастика",
-                          albumName: "",
-                          artistName: "Владимир Высоцкий",
-                          imageName: "91",
-                          trackName: "94"))
         //120 Миша маваши
         songs.append(Song(name: "Фанат",
                           albumName: "25/17",
@@ -373,43 +223,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                           artistName: "Маваши",
                           imageName: "15",
                           trackName: "125"))
-        //130
+        return songs
     }
-    
-    //MARK: -  Настройка таблицы
-    
-    // количество строк
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
-    }
-    //содержание ячеки
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: myTableViewCell.identifier
-                                                 , for: indexPath) as! myTableViewCell
-        let song = songs[indexPath.row]
-        cell.configure(with: song)
-        //cell.accessoryType = .disclosureIndicator // вид курсора чтоли
-        return cell
-    }
-    //выбор ячеки
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        //представляем плеер
-        let position = indexPath.row
-        //song
-       
-        let vc = PlayerViewController()
-        
-        vc.songs = songs
-        vc.position = position
-        present(vc, animated: true)
-    }
-    // высота ячейки
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-    
-    
 }
-
-

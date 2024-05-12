@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "jgprogresshud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JonasGessner/JGProgressHUD.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "6336c426fb147ee19c15252eaf363f29720c3eb5"
+      }
+    }
+  ],
+  "version" : 2
+}

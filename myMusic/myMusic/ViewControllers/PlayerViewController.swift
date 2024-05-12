@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
+final class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
     
     public var position : Int = 0
     public var songs:[Song] = []
@@ -54,7 +54,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
         return lable
     }()
     
-    let playerPauseButton = UIButton ()
+    private let playerPauseButton = UIButton ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +78,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
         view.addSubview(holder)
         
     }
+    
     private func createTimer() {
         let maxValue = player.duration
         sliderTrack.maximumValue = Float(maxValue)
@@ -99,6 +100,9 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
         let song = songs[position] // position это типа индекс или id или как в массиве можно по имени перебирать данные а можно по индексу
         //путь к файлу произведения
         let urlString = Bundle.main.path(forResource: song.trackName, ofType: "mp3")
+        //пытаюсь достать метаданные
+        
+        //вот до сюда
         DispatchQueue.main.async { [weak self] in
             do {
                 ///настройка режимов
@@ -224,14 +228,14 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
     }
     
     ///урвень звука
-    @objc func didSliderSlider (_ slider: UISlider) {
+    @objc private func didSliderSlider (_ slider: UISlider) {
         let value = slider.value
         player.volume = value
         
     }
     
     ///перемотка клипа
-    @objc func didSliderTrack (_ sliderTrack: UISlider) {
+    @objc private func didSliderTrack (_ sliderTrack: UISlider) {
         let maxValue = player.duration
         sliderTrack.maximumValue = Float(maxValue)
         sliderTrack.minimumValue = 0.0
@@ -241,7 +245,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
     }
     
     ///дейстиве кнопок плеера
-    @objc func didTapPlayerPauseButton (){
+    @objc private func didTapPlayerPauseButton (){
         if player.isPlaying == true{
             //pause
             player.pause()
@@ -270,7 +274,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
     }
     
     //кнопка следующая песня
-    @objc func didTapPlayerNextButton (){
+    @objc private func didTapPlayerNextButton (){
         if position < (songs.count - 1) {
             print(position)
             position = position + 1
@@ -283,7 +287,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
         }
     }
     
-    @objc func didTapPlayerBackButton (){
+    @objc private func didTapPlayerBackButton (){
         if position > 0 {
             position = position - 1
             player.stop()
@@ -303,6 +307,7 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate  {
         //    }
     }
     
+    //это делегат?
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         if flag == true, position < songs.count - 1  {
             print("Закончилось воспроизведение позиции: \(position)")

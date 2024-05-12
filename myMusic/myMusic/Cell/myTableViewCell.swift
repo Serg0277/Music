@@ -15,7 +15,7 @@ class myTableViewCell: UITableViewCell {
     private let userImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 35
+        imageView.layer.cornerRadius = 30
         imageView.layer.masksToBounds = true
         
         
@@ -60,22 +60,23 @@ class myTableViewCell: UITableViewCell {
         super.layoutSubviews()
         userImageView.frame = CGRect(x: 10,
                                      y: 10,
-                                     width: 70,
-                                     height: 70)
+                                     width: 60,
+                                     height: 60)
         
-        MusicLable.frame = CGRect(x: userImageView.right + 10,
+        MusicLable.frame = CGRect(x: userImageView.right + 15,
                                   y: 10,
                                   width: contentView.width - 20 - userImageView.width,
-                                  height: (contentView.height - 20)/4)
+                                  height: (contentView.height - 20)/2)
         
-        artistNameLable.frame = CGRect(x: userImageView.right + 10,
-                                       y: MusicLable.bottom + 5,
+        artistNameLable.frame = CGRect(x: userImageView.right + 15,
+                                       y: MusicLable.bottom + 10,
                                        width: contentView.width - 20 - userImageView.width,
                                        height: (contentView.height - 20)/2)
     }
     /// Modell
     public func configure(with model: Song){
         self.userImageView.image = UIImage(named: model.imageName)
+        
         self.MusicLable.text = model.name
         self.artistNameLable.text = model.artistName
     }
